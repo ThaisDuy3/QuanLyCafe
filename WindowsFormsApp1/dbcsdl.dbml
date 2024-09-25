@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbQuanLyCafe" Class="dbcsdlDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=MSI\TD;Initial Catalog=dbQuanLyCafe;Integrated Security=True" SettingsObjectName="WindowsFormsApp1.Properties.Settings" SettingsPropertyName="dbQuanLyCafeConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tbLoaiSanPham" Member="tbLoaiSanPhams">
+    <Type Name="tbLoaiSanPham">
+      <Column Name="loaisanpham_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="loaisanpham_ten" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbThanhPham" Member="tbThanhPhams">
+    <Type Name="tbThanhPham">
+      <Column Name="thanhpham_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="thanhpham_ten" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thanhpham_soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="thanhpham_dongia" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="loaisanpham_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="loaisanpham_ten" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbKhuVuc" Member="tbKhuVucs">
+    <Type Name="tbKhuVuc">
+      <Column Name="khuvuc_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="khuvuc_ten" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbBan" Member="tbBans">
+    <Type Name="tbBan">
+      <Column Name="ban_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ban_ten" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ban_trangthai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="khuvuc_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="khuvuc_ten" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbHoaDonChiTiet" Member="tbHoaDonChiTiets">
+    <Type Name="tbHoaDonChiTiet">
+      <Column Name="hoadonchitiet_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="hoadon_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="thanhpham_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="thanhpham_soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ban_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbTaiKhoan" Member="tbTaiKhoans">
+    <Type Name="tbTaiKhoan">
+      <Column Name="taikhoan_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="taikhoan_hoten" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="taikhoan_tentaikhoan" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="taikhoan_matkhau" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="taikhoan_hinhanh" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="taikhoan_quyen" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbHoaDon" Member="tbHoaDons">
+    <Type Name="tbHoaDon">
+      <Column Name="hoadon_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="hoadon_ngaynhap" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="hoadon_ngayxuat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ban_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="hoadon_trangthai" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="hoadon_mahoadon" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="hoadon_tongtien" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbNguyenLieu" Member="tbNguyenLieus">
+    <Type Name="tbNguyenLieu">
+      <Column Name="nguyenlieu_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nguyenlieu_ten" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="nguyenlieu_nhacungcap" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbNhapHang" Member="tbNhapHangs">
+    <Type Name="tbNhapHang">
+      <Column Name="nhaphang_id" Type="System.String" DbType="NVarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nhaphang_ngaynhap" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="nhaphang_tongtien" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbNhapHangChiTiet" Member="tbNhapHangChiTiets">
+    <Type Name="tbNhapHangChiTiet">
+      <Column Name="nhaphangchitiet_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nhaphangchitiet_sanpham" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="nguyenlieu_nhacungcap" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="nhaphangchitiet_soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="nhaphangchitiet_dongia" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="nhaphangchitiet_thanhtien" Type="System.Int32" DbType="Int" IsDbGenerated="true" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="nhaphang_id" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="nguyenlieu_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
