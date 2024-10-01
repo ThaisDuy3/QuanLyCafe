@@ -21,6 +21,7 @@ namespace WindowsFormsApp1
         int id_loaisanpham;
         int id_sanpham;
         int id_ban;
+        int id_nguyenlieu;
         string madonhang;
 
         private void frmQuanLy_Load(object sender, EventArgs e)
@@ -28,6 +29,7 @@ namespace WindowsFormsApp1
             loadLoaiSanPham();
             loadSanPham();
             loadBan();
+            loadNguyenLieu();
             loadComboSanPham();
             loadComboTrangThaiBan();
             loadKhuVucBan();
@@ -92,6 +94,23 @@ namespace WindowsFormsApp1
             grvDanhSachBan.Columns["ban_trangthai"].HeaderText = "Trạng thái";
             grvDanhSachBan.Columns["khuvuc_ten"].HeaderText = "Khu vực";
             grvDanhSachBan.Columns["khuvuc_id"].Visible = false;
+        }
+
+        protected void loadNguyenLieu()
+        {
+            var getData = from nl in db.tbNguyenLieus
+                          orderby nl.nguyenlieu_id descending
+                          select
+                                new
+                                {
+                                    nl.nguyenlieu_id,
+                                    nl.nguyenlieu_ten,
+                                    nl.nguyenlieu_nhacungcap
+                                };
+            grvNguyenLieu.DataSource = getData;
+            grvNguyenLieu.Columns["nguyenlieu_id"].HeaderText = "ID";
+            grvNguyenLieu.Columns["nguyenlieu_ten"].HeaderText = "Tên nguyên liệu";
+            grvNguyenLieu.Columns["nguyenlieu_nhacungcap"].HeaderText = "Nhà cung cấp";
         }
 
         protected void loadComboSanPham()
@@ -271,7 +290,7 @@ namespace WindowsFormsApp1
             cbDoUongLoai.SelectedIndex = -1;  // Clears the selection in the ComboBox
             nmSoLuong.Value = 1;  // Sets the NumericUpDown to 0 or any other default value
 
-            loadLoaiSanPham();
+            loadSanPham();
         }
 
         private void btnThemDoUong_Click(object sender, EventArgs e)
@@ -570,13 +589,36 @@ namespace WindowsFormsApp1
             ctdnh.ShowDialog();
         }
 
-        //NHẬP HÀNG
-        private void btnNhapHang_Click(object sender, EventArgs e)
+
+        //NGUYÊN LIỆU
+        private void btnThemDonHang_Click(object sender, EventArgs e)
         {
             frmNhapHang nh = new frmNhapHang();
             nh.Show();
         }
 
+        private void grvNguyenLieu_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string tennl = grvNguyenLieu.CurrentRow.Cells["nguyenlieu_ten"].Value.ToString();
+            txtTenNguyenLieu.Text = tennl;
+            id_nguyenlieu = Convert.ToInt32(grvNguyenLieu.CurrentRow.Cells["nguyenlieu_id"].Value);
+            txtNguyenLieuID.Text = id_nguyenlieu.ToString();
+            string ncc = grvNguyenLieu.CurrentRow.Cells["nguyenlieu_nhacungcap"].Value.ToString();
+            txtNguyenLieuNhaCungCap.Text = ncc;
+            btnThemDonHang.Enabled = false;
+            btnXoaNguyenLieu.Enabled = true;
+        }
 
+        private void btnRefreshNguyenLieu_Click(object sender, EventArgs e)
+        {
+            btnThemDonHang.Enabled = true;
+            btnXoaNguyenLieu.Enabled = false;
+
+            txtNguyenLieuID.Text = string.Empty;
+            txtTenNguyenLieu.Text = string.Empty;
+            txtNguyenLieuNhaCungCap.Text = string.Empty;
+
+            loadNguyenLieu();
+        }
     }
 }
